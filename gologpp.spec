@@ -3,12 +3,13 @@
 %global snapinfo 20190925.%{shortcommit}
 Name:           gologpp
 Version:        0
-Release:        3.%{snapinfo}%{?dist}
+Release:        4.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
 URL:            https://github.com/MASKOR/gologpp
 Source0:        https://github.com/MASKOR/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Patch0:         gologpp.value-template-constructor.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  eclipse-clp-devel < 7
@@ -60,6 +61,9 @@ cd -
 
 
 %changelog
+* Wed Sep 25 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-4.20190925.5418adb
+- Add patch to fix templated constructors of gologpp::Value
+
 * Wed Sep 25 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-3.20190925.5418adb
 - Update to latest upstream commit
 - Remove upstreamed patch
