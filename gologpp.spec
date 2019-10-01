@@ -1,9 +1,9 @@
-%global commit fa418f0b864c83730c3347af79f72eb2ab13a8b6
+%global commit 78855fc6700a9bfc0e636e9dee63406a22c2eb1a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20190926.%{shortcommit}
+%global snapinfo 20191001.%{shortcommit}
 Name:           gologpp
 Version:        0
-Release:        5.%{snapinfo}%{?dist}
+Release:        6.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -60,6 +60,9 @@ cd -
 
 
 %changelog
+* Tue Oct 01 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-6.20191001.78855fc
+- Update to latest upstream commit
+
 * Thu Sep 26 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-5.20190926.fa418f0
 - Update to latest upstream commit
 - Remove upstreamed patch
