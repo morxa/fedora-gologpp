@@ -48,6 +48,7 @@ cd -
 %{_libdir}/libgolog++.so.0*
 %{_libdir}/libparsegolog++.so.0*
 %{_libdir}/libreadylog++.so.0*
+%{_datadir}/golog++
 
 %files devel
 %{_includedir}/golog++
