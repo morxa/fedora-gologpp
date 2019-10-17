@@ -3,7 +3,7 @@
 %global snapinfo 20191002.%{shortcommit}
 Name:           gologpp
 Version:        0
-Release:        7.%{snapinfo}%{?dist}
+Release:        8.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -21,6 +21,7 @@ An implementation-independent GOLOG language.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       eclipse-clp-devel%{?_isa}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -61,6 +62,9 @@ cd -
 
 
 %changelog
+* Thu Oct 17 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-8.20191002.e102e4b
+- Add Requires: eclipse-clp-devel to devel sub-package
+
 * Wed Oct 02 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-7.20191002.e102e4b
 - Update to latest upstream commit to include upstream PR #5
 
