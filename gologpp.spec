@@ -1,9 +1,9 @@
-%global commit e102e4baaf4b652b9f5cebcd3db3df089c81faac
+%global commit b0588f0f276bb449044c02d75887f551d9ecf3da
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20191002.%{shortcommit}
+%global snapinfo 20191022.%{shortcommit}
 Name:           gologpp
 Version:        0
-Release:        8.%{snapinfo}%{?dist}
+Release:        9.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -62,6 +62,9 @@ cd -
 
 
 %changelog
+* Tue Oct 22 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-9.20191022.b0588f0
+- Update to latest upstream commit
+
 * Thu Oct 17 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-8.20191002.e102e4b
 - Add Requires: eclipse-clp-devel to devel sub-package
 
