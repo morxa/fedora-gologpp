@@ -3,12 +3,13 @@
 %global snapinfo 20191022.%{shortcommit}
 Name:           gologpp
 Version:        0
-Release:        9.%{snapinfo}%{?dist}
+Release:        10.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
 URL:            https://github.com/MASKOR/gologpp
 Source0:        https://github.com/MASKOR/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Patch0:         gologpp.fix-absolute-boilerplate-path.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  eclipse-clp-devel < 7
@@ -62,6 +63,9 @@ cd -
 
 
 %changelog
+* Tue Oct 29 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-10.20191022.b0588f0
+- Add patch to fix non-absolute path to Golog++ boilerplate
+
 * Tue Oct 22 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-9.20191022.b0588f0
 - Update to latest upstream commit
 
