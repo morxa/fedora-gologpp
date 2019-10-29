@@ -1,0 +1,30 @@
+diff --git a/src/semantics/readylog/execution.cpp b/src/semantics/readylog/execution.cpp
+index eacdc7a..93a464c 100644
+--- a/src/semantics/readylog/execution.cpp
++++ b/src/semantics/readylog/execution.cpp
+@@ -159,12 +159,11 @@ void ReadylogContext::compile_term(const EC_word &term)
+ 
+ std::string ReadylogContext::find_readylog() {
+ 	const char *readylog_pl = std::getenv("READYLOG_PL");
+-	if (!readylog_pl)
+-		throw std::runtime_error(
+-			"Could not find ReadyLog, environment variable READYLOG_PL not set"
+-		);
+-	std::string readylog_path_env(readylog_pl);
+-	readylog_path_env += ":";
++  std::string readylog_path_env = "";
++	if (readylog_pl) {
++    readylog_path_env = std::string(readylog_pl) + ":";
++  }
++	readylog_path_env += (std::string(SEMANTICS_INSTALL_DIR) + "/readylog/interpreter") + ":";
+ 	std::size_t last = 0;
+ 	std::size_t next;
+ 	while ((next = readylog_path_env.find(':', last)) != std::string::npos) {
+@@ -172,6 +171,7 @@ std::string ReadylogContext::find_readylog() {
+ 		if (next_path != "") {
+ 			filesystem::path readylog_path(next_path);
+ 			readylog_path /= "preprocessor.pl";
++      std::cout << "testing path " << readylog_path << std::endl;
+ 			if (filesystem::exists(readylog_path))
+ 				return std::string(readylog_path);
+ 		}

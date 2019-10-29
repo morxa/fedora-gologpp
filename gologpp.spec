@@ -3,13 +3,15 @@
 %global snapinfo 20191022.%{shortcommit}
 Name:           gologpp
 Version:        0
-Release:        10.%{snapinfo}%{?dist}
+Release:        11.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
 URL:            https://github.com/MASKOR/gologpp
 Source0:        https://github.com/MASKOR/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Source1:        https://thofmann.fedorapeople.org/readylog.tar.gz
 Patch0:         gologpp.fix-absolute-boilerplate-path.patch
+Patch1:         gologpp.compile-time-readylog-path.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  eclipse-clp-devel < 7
@@ -28,8 +30,17 @@ Requires:       eclipse-clp-devel%{?_isa}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%package        readylog
+Summary:        A ReadyLog interpreter for %{name}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+BuildArch:      noarch
+
+%description    readylog
+The readylog interpreter that can be used as an interpreter in Golog++.
+
 %prep
 %autosetup -p1 -n %{name}-%{commit}
+%setup -T -D -a 1 -n %{name}-%{commit}
 
 
 %build
@@ -45,12 +56,16 @@ cd build
 %make_install
 cd -
 
+mkdir -p %{buildroot}%{_datadir}/golog++/semantics/readylog
+cp -a readylog/{interpreter,utils} %{buildroot}%{_datadir}/golog++/semantics/readylog
+
 
 %files
 %{_libdir}/libgolog++.so.0*
 %{_libdir}/libparsegolog++.so.0*
 %{_libdir}/libreadylog++.so.0*
-%{_datadir}/golog++
+%dir %{_datadir}/golog++
+%dir %{_datadir}/golog++/semantics
 
 %files devel
 %{_includedir}/golog++
@@ -61,8 +76,14 @@ cd -
 %{_libdir}/pkgconfig/parsegolog++.pc
 %{_libdir}/pkgconfig/readylog++.pc
 
+%files readylog
+%{_datadir}/golog++/semantics/readylog
+
 
 %changelog
+* Tue Oct 29 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-11.20191022.b0588f0
+- Add readylog sub-package
+
 * Tue Oct 29 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-10.20191022.b0588f0
 - Add patch to fix non-absolute path to Golog++ boilerplate
 
