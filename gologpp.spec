@@ -10,8 +10,8 @@ License:        GPLv2+
 URL:            https://github.com/MASKOR/gologpp
 Source0:        https://github.com/MASKOR/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Source1:        https://thofmann.fedorapeople.org/readylog.tar.gz
-Patch0:         gologpp.fix-absolute-boilerplate-path.patch
-Patch1:         gologpp.compile-time-readylog-path.patch
+# https://github.com/MASKOR/gologpp/pull/6
+Patch0:         gologpp.installable-readylog-semantics.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  eclipse-clp-devel < 7
