@@ -1,15 +1,19 @@
-%global commit 453d2d4e326dc615b0bdb182fce581b01bec1a9b
+%global commit 1c96ffcbd1ba5247f2de65a85dca989733143046
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20191030.%{shortcommit}
+%global snapinfo 20191105.%{shortcommit}
+
+%global readylog_commit ecb9065a0e93b2bd91d09b269dd222632ee475ce
+%global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
+
 Name:           gologpp
 Version:        0
-Release:        12.%{snapinfo}%{?dist}
+Release:        13.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
 URL:            https://github.com/MASKOR/gologpp
 Source0:        https://github.com/MASKOR/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
-Source1:        https://thofmann.fedorapeople.org/readylog.tar.gz
+Source1:        https://thofmann.fedorapeople.org/readylog-%{readylog_shortcommit}.tar.gz
 
 BuildRequires:  boost-devel
 BuildRequires:  eclipse-clp-devel < 7
@@ -79,6 +83,9 @@ cp -a readylog/{interpreter,utils} %{buildroot}%{_datadir}/golog++/semantics/rea
 
 
 %changelog
+* Tue Nov 05 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-13.20191105.1c96ffc
+- Update to latest upstream commit
+
 * Wed Oct 30 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-12.20191030.453d2d4
 - Update to latest upstream commit
 
