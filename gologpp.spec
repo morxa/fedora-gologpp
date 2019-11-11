@@ -1,13 +1,13 @@
-%global commit 1c96ffcbd1ba5247f2de65a85dca989733143046
+%global commit 96625c9fd3ab814fde119a4dc58093f459c6de1b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20191105.%{shortcommit}
+%global snapinfo 20191111.%{shortcommit}
 
 %global readylog_commit ecb9065a0e93b2bd91d09b269dd222632ee475ce
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        13.%{snapinfo}%{?dist}
+Release:        14.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -63,6 +63,7 @@ cp -a readylog/{interpreter,utils} %{buildroot}%{_datadir}/golog++/semantics/rea
 
 
 %files
+%{_bindir}/readylog-test
 %{_libdir}/libgolog++.so.0*
 %{_libdir}/libparsegolog++.so.0*
 %{_libdir}/libreadylog++.so.0*
@@ -83,6 +84,9 @@ cp -a readylog/{interpreter,utils} %{buildroot}%{_datadir}/golog++/semantics/rea
 
 
 %changelog
+* Mon Nov 11 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-14.20191111.96625c9
+- Update to latest upstream commit
+
 * Tue Nov 05 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-13.20191105.1c96ffc
 - Update to latest upstream commit
 
