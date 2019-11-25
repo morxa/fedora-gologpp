@@ -1,13 +1,13 @@
-%global commit 96625c9fd3ab814fde119a4dc58093f459c6de1b
+%global commit 59265c1207de201ab7a9aab042f9258f557166f6
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20191111.%{shortcommit}
+%global snapinfo 20191125.%{shortcommit}
 
 %global readylog_commit ecb9065a0e93b2bd91d09b269dd222632ee475ce
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        14.%{snapinfo}%{?dist}
+Release:        15.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -48,7 +48,7 @@ The readylog interpreter that can be used as an interpreter in Golog++.
 %build
 mkdir -p build
 cd build
-%cmake -DBUILD_TESTS=OFF ..
+%cmake -DBUILD_TESTS=ON ..
 %make_build
 cd -
 
@@ -60,6 +60,12 @@ cd -
 
 mkdir -p %{buildroot}%{_datadir}/golog++/semantics/readylog
 cp -a readylog/{interpreter,utils} %{buildroot}%{_datadir}/golog++/semantics/readylog
+
+%check
+cd build
+READYLOG_PL=%{buildroot}%{_datadir}/golog++/semantics/readylog/interpreter
+export READYLOG_PL
+./readylog-test
 
 
 %files
@@ -84,6 +90,10 @@ cp -a readylog/{interpreter,utils} %{buildroot}%{_datadir}/golog++/semantics/rea
 
 
 %changelog
+* Mon Nov 25 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-15.20191125.59265c1
+- Update to latest upstream commit
+- Build and run tests
+
 * Mon Nov 11 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-14.20191111.96625c9
 - Update to latest upstream commit
 
