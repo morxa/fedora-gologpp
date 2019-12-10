@@ -1,13 +1,13 @@
-%global commit a33e84d18cf6e17124e28871b4de46a751bab0a8
+%global commit d5bb828b5ceda23fdefd3cb1e812245a04e6fd12
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20191127.%{shortcommit}
+%global snapinfo 20191210.%{shortcommit}
 
 %global readylog_commit ecb9065a0e93b2bd91d09b269dd222632ee475ce
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        16.%{snapinfo}%{?dist}
+Release:        17.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -90,6 +90,9 @@ export READYLOG_PL
 
 
 %changelog
+* Tue Dec 10 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-17.20191210.d5bb828
+- Update to latest upstream commit to include pconc fix
+
 * Wed Nov 27 2019 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-16.20191127.a33e84d
 - Update to latest upstream commit
 
