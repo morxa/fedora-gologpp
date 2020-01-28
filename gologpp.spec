@@ -1,13 +1,13 @@
-%global commit 81720c460de6a7130d57752c357396e16a6218be
+%global commit 22cd2341c48f709d0b831a122227e28567d0316b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20200114.%{shortcommit}
+%global snapinfo 20200128.%{shortcommit}
 
 %global readylog_commit e7eace99531d0516623491470553834c7b7a1d44
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        26.%{snapinfo}%{?dist}
+Release:        27.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -90,6 +90,9 @@ export READYLOG_PL
 
 
 %changelog
+* Tue Jan 28 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-27.20200128.22cd234
+- Update to latest upstream commit
+
 * Tue Jan 14 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-26.20200113.a23bb8c
 - Update readylog to latest upstream commit
 
