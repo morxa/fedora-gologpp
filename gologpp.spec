@@ -2,12 +2,12 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global snapinfo 20200211.%{shortcommit}
 
-%global readylog_commit e7eace99531d0516623491470553834c7b7a1d44
+%global readylog_commit ab153a0d167eb4541c32eb9dc2a774978bd2af61
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        30.%{snapinfo}%{?dist}
+Release:        31.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -90,6 +90,9 @@ export READYLOG_PL
 
 
 %changelog
+* Tue Feb 18 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-31.20200211.163730a
+- Update readylog to latest upstream commit
+
 * Tue Feb 11 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-30.20200211.163730a
 - Switch back to latest upstream commit 163730a (issue fixed)
 
