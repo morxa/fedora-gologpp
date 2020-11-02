@@ -1,13 +1,13 @@
-%global commit f93691be25ad25499a288875c40a132914f0535c
+%global commit c73aec32232b6da88b7772e4c605aa394e4c61b7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global snapinfo 20200627.%{shortcommit}
 
-%global readylog_commit e10828df2d5958e60ab17ddcc8ba4aa564eceb5b
+%global readylog_commit bc69ddd3fa2326aa8a30770a018f80ff399512df
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        35.%{snapinfo}%{?dist}
+Release:        36.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
@@ -46,30 +46,23 @@ The readylog interpreter that can be used as an interpreter in Golog++.
 
 
 %build
-mkdir -p build
-cd build
-%cmake -DBUILD_TESTS=ON ..
-%make_build
-cd -
+%cmake -DBUILD_TESTS=ON
+%cmake_build
 
 
 %install
-cd build
-%make_install
-cd -
+%cmake_install
 
 mkdir -p %{buildroot}%{_datadir}/golog++/semantics/readylog
 cp -a readylog/interpreter %{buildroot}%{_datadir}/golog++/semantics/readylog
 
 %check
-cd build
 READYLOG_PL=%{buildroot}%{_datadir}/golog++/semantics/readylog/interpreter
 export READYLOG_PL
-./readylog-test
+%ctest
 
 
 %files
-%{_bindir}/readylog-test
 %{_libdir}/libgolog++.so.0*
 %{_libdir}/libparsegolog++.so.0*
 %{_libdir}/libreadylog++.so.0*
@@ -90,6 +83,11 @@ export READYLOG_PL
 
 
 %changelog
+* Mon Nov 02 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-36.20200627.c73aec3
+- Update to latest upstream commit
+- Update readylog to latest upstream commit
+- Adapt to cmake out-of-source build
+
 * Mon Jun 29 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-35.20200627.f93691b
 - Update readylog to latest upstream commit
 
