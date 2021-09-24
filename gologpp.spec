@@ -1,18 +1,18 @@
-%global commit c73aec32232b6da88b7772e4c605aa394e4c61b7
+%global commit 96a51fff6bca4a94c154773d5e806ab1c7285dcd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapinfo 20200627.%{shortcommit}
+%global snapinfo 20210924.%{shortcommit}
 
-%global readylog_commit bc69ddd3fa2326aa8a30770a018f80ff399512df
+%global readylog_commit 36813a30946d396093a1830094d2ffdceefc9136
 %global readylog_shortcommit %(c=%{readylog_commit}; echo ${c:0:7})
 
 Name:           gologpp
 Version:        0
-Release:        36.%{snapinfo}%{?dist}
+Release:        37.%{snapinfo}%{?dist}
 Summary:        An implementation-independent GOLOG language
 
 License:        GPLv2+
 URL:            https://github.com/MASKOR/gologpp
-Source0:        https://github.com/MASKOR/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Source0:        https://github.com/morxa/gologpp/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Source1:        https://thofmann.fedorapeople.org/readylog-%{readylog_shortcommit}.tar.gz
 
 BuildRequires:  boost-devel
@@ -46,7 +46,7 @@ The readylog interpreter that can be used as an interpreter in Golog++.
 
 
 %build
-%cmake -DBUILD_TESTS=ON
+%cmake -DBUILD_TESTS=OFF -DBUILD_TESTING=OFF
 %cmake_build
 
 
@@ -63,6 +63,7 @@ export READYLOG_PL
 
 
 %files
+%{_bindir}/gologpp-test
 %{_libdir}/libgolog++.so.0*
 %{_libdir}/libparsegolog++.so.0*
 %{_libdir}/libreadylog++.so.0*
@@ -71,6 +72,7 @@ export READYLOG_PL
 
 %files devel
 %{_includedir}/golog++
+%{_libdir}/cmake/golog++
 %{_libdir}/libgolog++.so
 %{_libdir}/libparsegolog++.so
 %{_libdir}/libreadylog++.so
@@ -83,6 +85,9 @@ export READYLOG_PL
 
 
 %changelog
+* Fri Sep 24 2021 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-37.20210924.96a51ff
+- Update to forked upstream to support trans_all
+
 * Mon Nov 02 2020 Till Hofmann <hofmann@kbsg.rwth-aachen.de> - 0-36.20200627.c73aec3
 - Update to latest upstream commit
 - Update readylog to latest upstream commit
